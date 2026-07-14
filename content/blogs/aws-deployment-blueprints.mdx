@@ -1,0 +1,23 @@
+---
+title: "Deploying Node.js Services on AWS with Confidence"
+date: "2026-06-28"
+description: "The deployment habits that make containerized API releases predictable, observable, and reversible."
+tags: ["AWS", "Docker", "DevOps"]
+coverImage: "/aws-deploy.png"
+readingTime: 5
+author: "Salahudin Abbasi"
+---
+
+A deployment is successful only when it can be observed and rolled back. My AWS setup starts with immutable images, environment-specific configuration, and a health check that tests the dependencies a service actually needs.
+
+## Build once, promote the same artifact
+
+CI builds a tagged Docker image, scans it, and stores it in ECR. Staging and production both deploy that exact image, removing the “works in staging” gap.
+
+## Keep secrets outside the image
+
+Runtime configuration comes from AWS Secrets Manager or Parameter Store. The image contains no credentials and logs never print configuration values.
+
+## Release safely
+
+Rolling or blue/green deployments, CloudWatch alarms, and a documented rollback command turn a risky release into a controlled operation.

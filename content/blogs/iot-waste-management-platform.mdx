@@ -1,0 +1,24 @@
+---
+title: "Engineering an IoT Waste Management Platform"
+date: "2026-06-24"
+description: "How I think about device telemetry, alerting, and operational dashboards for smart waste collection."
+tags: ["IoT", "NestJS", "MongoDB"]
+coverImage: "/iot.png"
+readingTime: 6
+author: "Salahudin Abbasi"
+featured: true
+---
+
+Waste management becomes a data problem when bins can report fill level, battery state, location, and sensor health. The useful product is not the raw signal; it is a prioritized collection decision.
+
+## Ingest telemetry defensively
+
+Every message is validated, timestamped, and associated with a device identity. Out-of-order readings are expected, so I retain event time separately from ingestion time.
+
+## Convert readings into actions
+
+Thresholds are only a starting point. A route should consider predicted fill level, location, collection windows, and whether a device has gone silent.
+
+## Design for imperfect devices
+
+Devices go offline and sensors drift. Monitoring last-seen time, battery trends, and improbable changes gives operations staff enough context to trust the dashboard.

@@ -1,0 +1,29 @@
+---
+title: "Designing Production NestJS Modules"
+date: "2026-07-10"
+description: "How I structure NestJS applications so features stay testable, observable, and easy to evolve."
+tags: ["NestJS", "TypeScript", "Architecture"]
+coverImage: "/nestjs module.png"
+readingTime: 5
+author: "Salahudin Abbasi"
+featured: true
+---
+
+NestJS works best when each module owns a single business capability. In production systems, this boundary keeps delivery work local instead of spreading changes through controllers, services, and database code everywhere.
+
+## A module is a product boundary
+
+I group a controller, use cases, persistence adapter, DTOs, and tests by feature. The controller only translates HTTP into a typed command; business rules live in the service and data access stays behind a repository interface.
+
+## Operational concerns belong at the edge
+
+Validation pipes, authentication guards, structured logs, and exception filters are cross-cutting concerns. Keeping them at the module boundary gives every endpoint the same security and observability guarantees.
+
+## A practical checklist
+
+- Validate every external input with DTOs.
+- Keep database queries out of controllers.
+- Emit domain events after successful state changes.
+- Test services independently from transport and persistence.
+
+This structure has made it much easier to split work across teams without losing a clear view of ownership.

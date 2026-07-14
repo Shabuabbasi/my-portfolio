@@ -1,0 +1,24 @@
+---
+title: "Reliable Background Jobs with BullMQ and Redis"
+date: "2026-07-08"
+description: "Patterns I use to turn slow, failure-prone work into observable and recoverable background jobs."
+tags: ["BullMQ", "Redis", "Node.js"]
+coverImage: "/Bullmq.png"
+readingTime: 5
+author: "Salahudin Abbasi"
+featured: true
+---
+
+Queues are not just a performance optimization. They are a reliability boundary for email, exports, notifications, and integrations that should not make a user wait.
+
+## Design jobs to be idempotent
+
+A worker can run more than once. I give each job a stable business key and make the handler safe to retry, so a network timeout cannot create duplicate side effects.
+
+## Retries need intent
+
+Use exponential backoff for temporary failures, a bounded number of attempts, and a dead-letter workflow for work that needs human attention. Record enough context to replay a failed job safely.
+
+## Measure the queue
+
+Track waiting, active, completed, and failed counts alongside job age. A queue that accepts jobs but cannot drain them is an outage signal, not a background detail.

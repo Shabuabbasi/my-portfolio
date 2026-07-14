@@ -1,0 +1,24 @@
+---
+title: "Building Reliable Real-Time Features with Socket.IO"
+date: "2026-07-01"
+description: "Lessons from designing presence, rooms, acknowledgements, and reconnect behavior for real-time products."
+tags: ["Socket.IO", "Real-time", "NestJS"]
+coverImage: "/socketio.png"
+readingTime: 5
+author: "Salahudin Abbasi"
+featured: true
+---
+
+Real-time UX is a distributed-systems problem with a friendly interface. A connection can disappear, events can arrive twice, and clients can be temporarily out of date.
+
+## Rooms define delivery scope
+
+I use rooms for conversations, organizations, and resource subscriptions. The server authorizes room joins before broadcasting, which prevents a client from subscribing just by guessing an ID.
+
+## Acknowledgements make intent visible
+
+For important mutations, the client waits for an acknowledgement with a correlation ID. If it reconnects, it can reconcile pending actions rather than blindly sending them again.
+
+## Scale the gateway deliberately
+
+Multiple Socket.IO instances need a shared adapter such as Redis. Presence should be treated as ephemeral state with heartbeats, not as a permanent database record.

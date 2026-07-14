@@ -1,0 +1,23 @@
+---
+title: "Redis Caching Without Losing Data Consistency"
+date: "2026-07-05"
+description: "A practical approach to cache-aside reads, invalidation, TTLs, and avoiding stale data surprises."
+tags: ["Redis", "Caching", "Backend"]
+coverImage: "/redis.png"
+readingTime: 4
+author: "Salahudin Abbasi"
+---
+
+Redis is fast enough to hide an inefficient query, but caching only helps when invalidation is part of the design.
+
+## Start with cache-aside
+
+Read from Redis first, load from MongoDB on a miss, then store a short-lived value. On writes, update the database first and delete the matching cache key after the transaction succeeds.
+
+## Use bounded freshness
+
+Every key gets a TTL, even keys invalidated explicitly. This protects the system from forgotten invalidations and makes stale data duration predictable.
+
+## Cache the right things
+
+I cache expensive reads with a clear ownership model, not every response. Per-user authorization data and rapidly changing counters need special care because a fast incorrect answer is still incorrect.
