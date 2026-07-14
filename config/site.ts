@@ -11,7 +11,7 @@ export const siteConfig = {
     github: "https://github.com/Shabuabbasi",
   },
   ogImage:
-    "https://res.cloudinary.com/du1txbjcq/image/upload/v1784052190/protfolioimg_xvyyf4.png",
+    "https://res.cloudinary.com/du1txbjcq/image/upload/v1784052190/protfolioimg_xvyyf4.png?t=2026",
   iconIco:
     "https://res.cloudinary.com/du1txbjcq/image/upload/v1784052390/my-web-lo_p0c8d0.png",
   logoIcon:

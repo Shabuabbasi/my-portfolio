@@ -21,7 +21,6 @@ import { featuredSkills } from "@/config/skills";
 import { getFeaturedBlogs } from "@/lib/blogs";
 import { getGitHubData } from "@/lib/github";
 import { cn } from "@/lib/utils";
-import profileImg from "@/public/profile-img.jpg";
 
 // Prevent GitHub API calls from being made while Next generates the build.
 export const dynamic = "force-dynamic";
@@ -82,15 +81,15 @@ export default async function IndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
 
-      <section className="space-y-6 pb-8 pt-6 mb-0 md:pb-12 md:py-20 lg:py-32 h-screen flex items-center">
-        <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center -mt-20">
+      <section className="space-y-6 pb-8 pt-6 mb-0 md:pb-12 md:pt-6 lg:pt-12 min-h-screen flex items-center justify-center relative">
+        <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Image
-            src={profileImg}
+            src="/profile-img.jpg"
             height={200}
             width={200}
-            sizes="(max-width: 640px) 12rem, (max-width: 768px) 14rem, 16rem"
+            sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, 256px"
             alt="Salahudin Abbasi"
-            className="bg-primary rounded-full mb-0 md:mb-2 aspect-square object-cover w-44 sm:w-56 lg:w-64 border-8 border-primary"
+            className="bg-primary rounded-full mb-0 md:mb-2 aspect-square object-cover w-48 sm:w-56 lg:w-64 border-8 border-primary"
             priority
           />
 
