@@ -11,11 +11,11 @@ export const siteConfig = {
     github: "https://github.com/Shabuabbasi",
   },
   ogImage:
-    "https://res.cloudinary.com/dvt5vkfwz/image/upload/v1767384721/naman_portfolio_og_image.png",
+    "https://res.cloudinary.com/du1txbjcq/image/upload/v1784052190/protfolioimg_xvyyf4.png",
   iconIco:
-    "https://res.cloudinary.com/dbfvcn3f6/image/upload/v1692357384/assets/naman-favicon.ico",
+    "https://res.cloudinary.com/du1txbjcq/image/upload/v1784052390/my-web-lo_p0c8d0.png",
   logoIcon:
-    "https://res.cloudinary.com/dbfvcn3f6/image/upload/v1692357294/assets/naman-logo.png",
+    "https://res.cloudinary.com/du1txbjcq/image/upload/v1784052390/my-web-lo_p0c8d0.png",
   keywords: [
     "Salahudin Abbasi",
     "MERN developer",
