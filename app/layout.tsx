@@ -131,7 +131,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </ThemeProvider>
         <Script
           src="https://convot.xyz/widget.js"
-          data-token="3vpr28Va7E8luRq8DMOStAr9tefOCVqifQ28fpp6grrKS4zflNRZQjQpmeu4os_2nuLmmh1DOshndiN5O1vvGg"
+          data-token="gRDp7oKSMtXAtC782PJK4MED2UFZrBb-PC_qBaRj0O-OaSqtA7Fg7ZeyS7d0C1kqpdTYG_XjtnTVUGiQBBUhDw"
           data-api-url="https://api.convot.xyz"
           strategy="afterInteractive"
         />
