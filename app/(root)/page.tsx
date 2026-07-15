@@ -32,8 +32,31 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
+  openGraph: {
+    title: siteConfig.name,
+    description:
+      "Full Stack MERN & NestJS Developer specializing in React, Next.js, Node.js, NestJS, TypeScript, scalable backend systems, real-time applications, and cloud deployment.",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    type: "website",
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.authorName,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description:
+      "Full Stack MERN & NestJS Developer specializing in React, Next.js, Node.js, NestJS.",
+    images: [siteConfig.ogImage],
+    creator: `@${siteConfig.username}`,
+  },
 };
-
 
 export default async function IndexPage() {
   const [featuredBlogs, github] = await Promise.all([getFeaturedBlogs(), getGitHubData()]);
