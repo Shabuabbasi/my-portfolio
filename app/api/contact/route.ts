@@ -18,9 +18,19 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, message, social, email } = body;
 
-    const res = await fetch(
-      `${formLink}/formResponse?${fieldIdName}=${name}&${fieldIdEmail}=${email}&${fieldIdMessage}=${message}&${fieldIdSocial}=${social}`
-    );
+    const formData = new URLSearchParams();
+    if (fieldIdName) formData.append(fieldIdName, name);
+    if (fieldIdEmail) formData.append(fieldIdEmail, email);
+    if (fieldIdMessage) formData.append(fieldIdMessage, message);
+    if (fieldIdSocial && social) formData.append(fieldIdSocial, social);
+
+    const res = await fetch(`${formLink}/formResponse`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: formData.toString(),
+    });
 
     return NextResponse.json("Success!");
   } catch (error) {
