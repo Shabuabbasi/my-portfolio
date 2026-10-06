@@ -23,6 +23,7 @@ export interface ProjectInterface {
   startDate: Date;
   endDate: Date;
   companyLogoImg?: any;
+  coverImage?: string;
   descriptionDetails: DescriptionDetailsInterface;
   pagesInfoArr: PagesInfoInterface[];
 }

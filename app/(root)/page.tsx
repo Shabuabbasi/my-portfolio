@@ -15,11 +15,11 @@ import SkillsCard from "@/components/skills/skills-card";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { experiences } from "@/config/experience";
 import { pagesConfig } from "@/config/pages";
-import { featuredProjects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import { featuredSkills } from "@/config/skills";
 import { getFeaturedBlogs } from "@/lib/blogs";
 import { getGitHubData } from "@/lib/github";
+import { getFeaturedProjects } from "@/lib/projects-db";
 import { cn } from "@/lib/utils";
 
 // Prevent GitHub API calls from being made while Next generates the build.
@@ -59,7 +59,11 @@ export const metadata: Metadata = {
 };
 
 export default async function IndexPage() {
-  const [featuredBlogs, github] = await Promise.all([getFeaturedBlogs(), getGitHubData()]);
+  const [featuredBlogs, github, featuredProjects] = await Promise.all([
+    getFeaturedBlogs(),
+    getGitHubData(),
+    getFeaturedProjects(),
+  ]);
   const featuredContributions = (github.pinnedRepositories.length > 0 ? github.pinnedRepositories : github.repositories).slice(0, 3);
   // Structured data for personal portfolio
   const personSchema = {

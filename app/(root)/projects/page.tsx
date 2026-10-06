@@ -4,14 +4,17 @@ import PageContainer from "@/components/common/page-container";
 import ProjectCard from "@/components/projects/project-card";
 import { ResponsiveTabs } from "@/components/ui/responsive-tabs";
 import { pagesConfig } from "@/config/pages";
-import { Projects } from "@/config/projects";
+import { ProjectInterface } from "@/config/projects";
+import { getAllProjects } from "@/lib/projects-db";
 
 export const metadata: Metadata = {
   title: pagesConfig.projects.metadata.title,
   description: pagesConfig.projects.metadata.description,
 };
 
-const renderContent = (tabVal: string) => {
+export const dynamic = "force-dynamic";
+
+const renderContent = (Projects: ProjectInterface[], tabVal: string) => {
   let projectArr = Projects;
   if (tabVal === "personal") {
     projectArr = projectArr.filter((val) => val.type === "Personal");
@@ -28,22 +31,23 @@ const renderContent = (tabVal: string) => {
   );
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await getAllProjects();
   const tabItems = [
     {
       value: "all",
       label: "All",
-      content: renderContent("all"),
+      content: renderContent(projects, "all"),
     },
     {
       value: "personal",
       label: "Personal",
-      content: renderContent("personal"),
+      content: renderContent(projects, "personal"),
     },
     {
       value: "professional",
       label: "Professional",
-      content: renderContent("professional"),
+      content: renderContent(projects, "professional"),
     },
   ];
 

@@ -11,7 +11,9 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const imageUrl = project.websiteLink
+  const imageUrl = project.coverImage
+    ? project.coverImage
+    : project.websiteLink
     ? `https://image.thum.io/get/noanimate/width/1200/crop/800/${project.websiteLink}`
     : `https://ui-avatars.com/api/?name=${encodeURIComponent(
         project.companyName
@@ -26,7 +28,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             src={imageUrl}
             alt={project.companyName}
             fill
-            unoptimized={!project.websiteLink}
+            unoptimized={!project.websiteLink && !project.coverImage}
           />
         </Link>
       </div>

@@ -7,8 +7,8 @@ import ProjectDescription from "@/components/projects/project-description";
 import { buttonVariants } from "@/components/ui/button";
 import ChipContainer from "@/components/ui/chip-container";
 import CustomTooltip from "@/components/ui/custom-tooltip";
-import { Projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
+import { getProjectById } from "@/lib/projects-db";
 import { cn, formatDateFromObj } from "@/lib/utils";
 
 interface ProjectPageProps {
@@ -19,14 +19,18 @@ interface ProjectPageProps {
 
 const githubUsername = "Shabuabbasi";
 
+export const dynamic = "force-dynamic";
+
 export default async function Project({ params }: ProjectPageProps) {
   const { projectId } = await params;
-  let project = Projects.find((val) => val.id === projectId);
+  const project = await getProjectById(projectId);
   if (!project) {
     redirect("/projects");
   }
 
-  const imageUrl = project.websiteLink
+  const imageUrl = project.coverImage
+    ? project.coverImage
+    : project.websiteLink
     ? `https://image.thum.io/get/noanimate/width/1200/crop/800/${project.websiteLink}`
     : `https://ui-avatars.com/api/?name=${encodeURIComponent(
         project.companyName
@@ -103,7 +107,7 @@ export default async function Project({ params }: ProjectPageProps) {
             height={405}
             className="rounded-md border bg-muted transition-transform group-hover:scale-[1.01]"
             priority
-            unoptimized={!project.websiteLink}
+            unoptimized={!project.websiteLink && !project.coverImage}
           />
         </Link>
       ) : (
