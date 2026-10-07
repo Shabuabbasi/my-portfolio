@@ -1,3 +1,4 @@
+import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { MainNav } from "@/components/common/main-nav";
 import { ModeToggle } from "@/components/common/mode-toggle";
 import { SiteFooter } from "@/components/common/site-footer";
@@ -24,6 +25,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       </header>
       <main className="container flex-1">{children}</main>
       <SiteFooter />
+      <WhatsAppButton />
     </div>
   );
 }
